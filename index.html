@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <title>D.Gamers Store</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-wrapper">
+      <div class="content-wrapper">
+        <!-- HEADER -->
+        <header id="appHeader">
+          <div class="user-info">
+            <div class="avatar" id="headerAvatar">
+              <i class="fas fa-user-secret"></i>
+            </div>
+            <div class="user-text">
+              <h2 id="headerName">Guest Account</h2>
+              <p id="headerStatus" style="color: var(--text-muted)">
+                Unverified
+              </p>
+            </div>
+          </div>
+          <div class="wallet-badge" id="headerWallet">
+            <i class="fas fa-wallet"></i> Rp 0
+          </div>
+        </header>
+
+        <!-- 1. DASHBOARD (HOME) -->
+        <div id="homeSection" class="section active">
+          <div class="brand-welcome">
+            <div class="brand-identity">
+              <div class="brand-logo" aria-hidden="true">DG</div>
+              <div class="logo-text">
+                <i class="fas fa-bolt"></i>
+                <span>D.Gamers Store</span>
+              </div>
+            </div>
+            <p>Top UP Murah, Aman, dan Terpecaya!!!</p>
+          </div>
+
+          <div class="section-header">
+            <div class="live-dot"></div>
+            <h3>Game Terfavorit</h3>
+          </div>
+
+          <div class="game-grid">
+            <div
+              class="game-card"
+              onclick="
+                openGame(
+                  'PUBG Mobile',
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/PUBG_Mobile_logo.png/320px-PUBG_Mobile_logo.png',
+                )
+              "
+            >
+              <div class="rgb-img-box" data-game="pubg">
+                <div class="rgb-inner">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/PUBG_Mobile_logo.png/320px-PUBG_Mobile_logo.png"
+                    alt="PUBG Mobile"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <h4>PUBG Mobile</h4>
+            </div>
+
+            <div
+              class="game-card"
+              onclick="
+                openGame(
+                  'Mobile Legends',
+                  'https://upload.wikimedia.org/wikipedia/en/thumb/1/13/MobileLegends_Logo.png/320px-MobileLegends_Logo.png',
+                )
+              "
+            >
+              <div class="rgb-img-box" data-game="ml">
+                <div class="rgb-inner">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/en/thumb/1/13/MobileLegends_Logo.png/320px-MobileLegends_Logo.png"
+                    alt="Mobile Legends"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <h4>Mobile Legends</h4>
+            </div>
+
+            <div
+              class="game-card"
+              onclick="
+                openGame(
+                  'Free Fire',
+                  'https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Garena_Free_Fire_Logo.png/320px-Garena_Free_Fire_Logo.png',
+                )
+              "
+            >
+              <div class="rgb-img-box" data-game="ff">
+                <div class="rgb-inner">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Garena_Free_Fire_Logo.png/320px-Garena_Free_Fire_Logo.png"
+                    alt="Free Fire"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <h4>Free Fire</h4>
+            </div>
+
+            <div
+              class="game-card"
+              onclick="
+                openGame(
+                  'Roblox',
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Roblox_Logo_2022.svg/320px-Roblox_Logo_2022.svg.png',
+                )
+              "
+            >
+              <div class="rgb-img-box" data-game="rbx">
+                <div class="rgb-inner">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Roblox_Logo_2022.svg/320px-Roblox_Logo_2022.svg.png"
+                    style="filter: brightness(0)"
+                    alt="Roblox"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <h4>Roblox</h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. RIWAYAT -->
+        <div id="historySection" class="section">
+          <div class="brand-welcome" style="margin-bottom: 20px">
+            <h3 style="color: #fff; font-size: 1.4rem; font-weight: 800">
+              Riwayat Transaksi
+            </h3>
+          </div>
+          <div class="brand-welcome empty-state" id="historyContent">
+            <i
+              class="fas fa-file-invoice"
+              style="
+                font-size: 4rem;
+                color: var(--text-muted);
+                margin-bottom: 16px;
+              "
+            ></i>
+            <h3 style="color: #fff">Belum Ada Transaksi</h3>
+            <p style="margin-top: 8px">Top up pertamamu akan muncul di sini.</p>
+          </div>
+        </div>
+
+        <!-- 3. AKUN (Login & Daftar) -->
+        <div id="accountSection" class="section">
+          <!-- Jika Belum Login -->
+          <div id="authContainer" class="auth-box">
+            <div class="auth-tabs" id="authTabsContainer" data-active="login">
+              <div class="auth-indicator"></div>
+              <div
+                class="auth-tab active"
+                id="tabLogin"
+                onclick="switchAuth('login')"
+              >
+                LOGIN
+              </div>
+              <div
+                class="auth-tab"
+                id="tabRegister"
+                onclick="switchAuth('register')"
+              >
+                DAFTAR
+              </div>
+            </div>
+
+            <!-- FORM LOGIN -->
+            <div id="formLogin">
+              <div class="form-group">
+                <div class="input-modern">
+                  <i class="fas fa-phone"></i>
+                  <input
+                    type="number"
+                    id="loginPhone"
+                    placeholder="Nomor Handphone"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-modern">
+                  <i class="fas fa-lock"></i>
+                  <input
+                    type="password"
+                    id="loginPass"
+                    placeholder="Password"
+                  />
+                </div>
+              </div>
+              <button class="btn-main" onclick="doLogin()">
+                Masuk Akun <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+
+            <!-- FORM DAFTAR -->
+            <div id="formRegister" style="display: none">
+              <div class="form-group">
+                <div class="input-modern">
+                  <i class="fas fa-user"></i>
+                  <input type="text" id="regName" placeholder="Nama Lengkap" />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-modern">
+                  <i class="fas fa-phone"></i>
+                  <input
+                    type="number"
+                    id="regPhone"
+                    placeholder="Nomor Handphone"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-modern">
+                  <i class="fas fa-lock"></i>
+                  <input
+                    type="password"
+                    id="regPass"
+                    placeholder="Buat Password"
+                  />
+                </div>
+              </div>
+              <button class="btn-main" onclick="doRegister()">
+                Daftar Sekarang <i class="fas fa-user-plus"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Jika Sudah Login -->
+          <div id="profileContainer" class="profile-card" style="display: none">
+            <div class="avatar-lg" id="profileAvatar">D</div>
+            <h2 id="profileName">Gamer</h2>
+            <p id="profilePhone">08123456789</p>
+            <button class="btn-danger" onclick="doLogout()">
+              <i class="fas fa-power-off"></i> KELUAR AKUN
+            </button>
+          </div>
+        </div>
+
+        <!-- TRANSAKSI (Hanya bisa diakses jika Login) -->
+        <div id="transactionSection" class="section">
+          <div class="nav-back" onclick="navTo('home')">
+            <i class="fas fa-chevron-left"></i> Kembali ke Menu
+          </div>
+
+          <div class="tx-header">
+            <div class="rgb-img-box">
+              <div class="rgb-inner">
+                <img id="gameBannerImg" src="" alt="Game" />
+              </div>
+            </div>
+            <h2 id="gameTitle">Game Title</h2>
+          </div>
+
+          <div class="tx-panel active-panel">
+            <div class="panel-head">
+              <div class="step-num">1</div>
+              ID Target
+            </div>
+            <div class="input-modern">
+              <i class="fas fa-gamepad"></i>
+              <input
+                type="text"
+                id="playerId"
+                class="font-mono"
+                placeholder="Ketik ID Game Anda"
+                oninput="handleSteps()"
+              />
+            </div>
+          </div>
+
+          <div class="tx-panel locked" id="itemPanel">
+            <div class="panel-head">
+              <div class="step-num">2</div>
+              Pilih Item
+            </div>
+            <div class="nominal-grid" id="itemGrid"></div>
+          </div>
+
+          <div class="tx-panel locked" id="paymentPanel">
+            <div class="panel-head">
+              <div class="step-num">3</div>
+              Pembayaran
+            </div>
+            <div class="pay-method" onclick="selectPayment(this, 'QRIS')">
+              <i
+                class="fas fa-qrcode"
+                style="font-size: 28px; color: var(--primary)"
+              ></i>
+              <div style="flex: 1; margin-left: 16px">
+                <h5 style="color: #fff; font-size: 1.05rem">QRIS Premium</h5>
+                <p
+                  style="
+                    font-size: 0.8rem;
+                    color: var(--text-muted);
+                    margin-top: 3px;
+                  "
+                >
+                  Dana, Gopay, OVO, SPay
+                </p>
+              </div>
+              <i
+                class="fas fa-check-circle check-icon"
+                style="color: var(--primary); display: none; font-size: 1.4rem"
+              ></i>
+            </div>
+          </div>
+
+          <button class="btn-main locked" id="buyBtn" onclick="processOrder()">
+            Beli Sekarang
+          </button>
+        </div>
+      </div>
+
+      <!-- FLOATING DOCK NAVIGATION DENGAN TEKS SELALU TAMPIL -->
+      <div class="bottom-nav-container">
+        <div class="bottom-nav">
+          <div class="nav-item active" id="nav-home" onclick="navTo('home')">
+            <i class="fas fa-cube"></i><span>HOME</span>
+          </div>
+          <div class="nav-item" id="nav-history" onclick="navTo('history')">
+            <i class="fas fa-receipt"></i><span>RIWAYAT</span>
+          </div>
+          <div class="nav-item" id="nav-account" onclick="navTo('account')">
+            <i class="fas fa-user-astronaut"></i><span>AKUN</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODALS -->
+      <div id="toast" class="toast"></div>
+
+      <!-- Login Guard Modal -->
+      <div id="loginPromptModal" class="modal-overlay">
+        <div class="modal-box">
+          <i
+            class="fas fa-shield-alt"
+            style="font-size: 4rem; color: var(--primary); margin-bottom: 20px"
+          ></i>
+          <h3
+            style="
+              font-size: 1.6rem;
+              font-weight: 800;
+              margin-bottom: 10px;
+              color: #fff;
+            "
+          >
+            Akses Terbatas
+          </h3>
+          <p
+            style="
+              color: var(--text-muted);
+              font-size: 0.95rem;
+              margin-bottom: 30px;
+              line-height: 1.5;
+            "
+          >
+            Keamanan adalah prioritas kami!
+          </p>
+          <button class="btn-main" onclick="closeLoginPrompt()">
+            Buka Menu Akun
+          </button>
+        </div>
+      </div>
+
+      <!-- Success Modal -->
+      <div id="successModal" class="modal-overlay">
+        <div class="modal-box">
+          <i
+            class="fas fa-check-circle"
+            style="
+              font-size: 5rem;
+              color: #00f0ff;
+              margin-bottom: 24px;
+              filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.5));
+            "
+          ></i>
+          <h3
+            style="
+              font-size: 1.8rem;
+              font-weight: 800;
+              margin-bottom: 12px;
+              color: #fff;
+            "
+          >
+            Berhasil!
+          </h3>
+          <p
+            style="
+              color: var(--text-muted);
+              font-size: 0.95rem;
+              margin-bottom: 30px;
+              line-height: 1.5;
+            "
+          >
+            Transaksi sedang diproses secara real-time. Cek halaman riwayat
+            untuk status.
+          </p>
+          <button class="btn-main" onclick="closeSuccessModal()">
+            Selesai
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const db = {
+        "PUBG Mobile": [
+          { name: "60 UC", price: "Rp 14.000" },
+          { name: "325 UC", price: "Rp 72.000" },
+          { name: "660 UC", price: "Rp 143.000" },
+        ],
+        "Mobile Legends": [
+          { name: "86 Diamonds", price: "Rp 19.800" },
+          { name: "172 Diamonds", price: "Rp 38.500" },
+          { name: "257 Diamonds", price: "Rp 58.000" },
+        ],
+        "Free Fire": [
+          { name: "70 Diamonds", price: "Rp 10.000" },
+          { name: "140 Diamonds", price: "Rp 19.500" },
+          { name: "355 Diamonds", price: "Rp 49.000" },
+        ],
+        Roblox: [
+          { name: "80 Robux", price: "Rp 15.000" },
+          { name: "400 Robux", price: "Rp 74.000" },
+          { name: "800 Robux", price: "Rp 148.000" },
+        ],
+      };
+
+      let state = { loggedIn: false, name: "", phone: "", item: null, pay: "" };
+
+      function showToast(msg) {
+        const toast = document.getElementById("toast");
+        toast.innerText = msg;
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 3000);
+      }
+
+      function navTo(tab) {
+        document
+          .querySelectorAll(".section")
+          .forEach((s) => s.classList.remove("active"));
+        document
+          .querySelectorAll(".nav-item")
+          .forEach((n) => n.classList.remove("active"));
+
+        document.getElementById("appHeader").style.display = "flex";
+
+        if (tab === "home") {
+          document.getElementById("homeSection").classList.add("active");
+          document.getElementById("nav-home").classList.add("active");
+        } else if (tab === "history") {
+          document.getElementById("historySection").classList.add("active");
+          document.getElementById("nav-history").classList.add("active");
+        } else if (tab === "account") {
+          document.getElementById("accountSection").classList.add("active");
+          document.getElementById("nav-account").classList.add("active");
+        }
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function switchAuth(type) {
+        document.getElementById("tabLogin").classList.remove("active");
+        document.getElementById("tabRegister").classList.remove("active");
+        document.getElementById("formLogin").style.display = "none";
+        document.getElementById("formRegister").style.display = "none";
+
+        const container = document.getElementById("authTabsContainer");
+
+        if (type === "login") {
+          container.setAttribute("data-active", "login");
+          document.getElementById("tabLogin").classList.add("active");
+          setTimeout(
+            () =>
+              (document.getElementById("formLogin").style.display = "block"),
+            150,
+          );
+        } else {
+          container.setAttribute("data-active", "register");
+          document.getElementById("tabRegister").classList.add("active");
+          setTimeout(
+            () =>
+              (document.getElementById("formRegister").style.display = "block"),
+            150,
+          );
+        }
+      }
+
+      function doLogin() {
+        const phone = document.getElementById("loginPhone").value.trim();
+        const pass = document.getElementById("loginPass").value.trim();
+        if (!phone || !pass) return showToast("⚠️ Masukkan No HP & Password!");
+
+        setUserLoggedIn("Gamer VIP", phone);
+        showToast("✨ Login Berhasil!");
+        navTo("home");
+      }
+
+      function doRegister() {
+        const name = document.getElementById("regName").value.trim();
+        const phone = document.getElementById("regPhone").value.trim();
+        const pass = document.getElementById("regPass").value.trim();
+        if (!name || !phone || !pass)
+          return showToast("⚠️ Lengkapi semua data pendaftaran!");
+
+        setUserLoggedIn(name, phone);
+        showToast("✨ Pendaftaran Berhasil!");
+        navTo("home");
+      }
+
+      function setUserLoggedIn(name, phone) {
+        state.loggedIn = true;
+        state.name = name;
+        state.phone = phone;
+
+        document.getElementById("headerName").innerText = name;
+        document.getElementById("headerStatus").innerText = "VIP Verified";
+        document.getElementById("headerStatus").style.color = "var(--primary)";
+        document.getElementById("headerAvatar").innerHTML = name
+          .charAt(0)
+          .toUpperCase();
+        document.getElementById("headerAvatar").classList.add("logged-in");
+        document.getElementById("headerWallet").classList.add("active");
+        document.getElementById("headerWallet").innerHTML =
+          `<i class="fas fa-wallet"></i> Rp 150.000`;
+
+        document.getElementById("authContainer").style.display = "none";
+        document.getElementById("profileContainer").style.display = "block";
+        document.getElementById("profileName").innerText = name;
+        document.getElementById("profilePhone").innerText = phone;
+        document.getElementById("profileAvatar").innerText = name
+          .charAt(0)
+          .toUpperCase();
+      }
+
+      function doLogout() {
+        state.loggedIn = false;
+        state.name = "";
+        state.phone = "";
+
+        document.getElementById("headerName").innerText = "Guest Account";
+        document.getElementById("headerStatus").innerText = "Unverified";
+        document.getElementById("headerStatus").style.color =
+          "var(--text-muted)";
+        document.getElementById("headerAvatar").innerHTML =
+          `<i class="fas fa-user-secret"></i>`;
+        document.getElementById("headerAvatar").classList.remove("logged-in");
+        document.getElementById("headerWallet").classList.remove("active");
+        document.getElementById("headerWallet").innerHTML =
+          `<i class="fas fa-wallet"></i> Rp 0`;
+
+        document.getElementById("authContainer").style.display = "block";
+        document.getElementById("profileContainer").style.display = "none";
+
+        document
+          .querySelectorAll("input")
+          .forEach((input) => (input.value = ""));
+        switchAuth("login");
+
+        showToast("Anda telah keluar.");
+        navTo("home");
+      }
+
+      function openGame(name, logo) {
+        if (!state.loggedIn) {
+          document.getElementById("loginPromptModal").classList.add("show");
+          return;
+        }
+
+        state.item = null;
+        state.pay = "";
+        document.getElementById("appHeader").style.display = "none";
+        document
+          .querySelectorAll(".section")
+          .forEach((s) => s.classList.remove("active"));
+        document.getElementById("transactionSection").classList.add("active");
+        document
+          .querySelectorAll(".nav-item")
+          .forEach((n) => n.classList.remove("active"));
+        document.getElementById("nav-home").classList.add("active");
+
+        document.getElementById("gameTitle").innerText = name;
+        document.getElementById("gameBannerImg").src = logo;
+        if (name === "Roblox") {
+          document.getElementById("gameBannerImg").style.filter =
+            "brightness(0)";
+        } else {
+          document.getElementById("gameBannerImg").style.filter = "none";
+        }
+
+        document.getElementById("playerId").value = "";
+        document.getElementById("itemPanel").classList.add("locked");
+        document.getElementById("paymentPanel").classList.add("locked");
+        document.getElementById("buyBtn").classList.add("locked");
+        document.getElementById("buyBtn").innerText = `Lanjutkan Pembayaran`;
+        document
+          .querySelectorAll(".check-icon")
+          .forEach((i) => (i.style.display = "none"));
+
+        const grid = document.getElementById("itemGrid");
+        grid.innerHTML = "";
+        db[name].forEach((item) => {
+          const div = document.createElement("div");
+          div.className = "nominal-card";
+          div.innerHTML = `<div class="name">${item.name}</div><div class="price font-mono">${item.price}</div>`;
+          div.onclick = () => {
+            document
+              .querySelectorAll(".nominal-card")
+              .forEach((c) => c.classList.remove("selected"));
+            div.classList.add("selected");
+            state.item = item;
+            document.getElementById("paymentPanel").classList.remove("locked");
+            handleSteps();
+          };
+          grid.appendChild(div);
+        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function closeLoginPrompt() {
+        document.getElementById("loginPromptModal").classList.remove("show");
+        navTo("account");
+      }
+
+      function handleSteps() {
+        const idInput = document.getElementById("playerId").value.trim();
+        if (idInput.length >= 4) {
+          document.getElementById("itemPanel").classList.remove("locked");
+        } else {
+          document.getElementById("itemPanel").classList.add("locked");
+          document.getElementById("buyBtn").classList.add("locked");
+        }
+
+        if (idInput.length >= 4 && state.item && state.pay) {
+          const btn = document.getElementById("buyBtn");
+          btn.classList.remove("locked");
+          btn.innerHTML = `Bayar ${state.item.price}`;
+        }
+      }
+
+      function selectPayment(el, method) {
+        document.querySelectorAll(".pay-method").forEach((c) => {
+          c.classList.remove("selected");
+          c.querySelector(".check-icon").style.display = "none";
+        });
+        el.classList.add("selected");
+        el.querySelector(".check-icon").style.display = "block";
+        state.pay = method;
+        handleSteps();
+      }
+
+      function processOrder() {
+        const btn = document.getElementById("buyBtn");
+        btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Menghubungkan ke Server...`;
+        setTimeout(() => {
+          document.getElementById("successModal").classList.add("show");
+          btn.innerText = `Beli Sekarang`;
+        }, 2000);
+      }
+
+      function closeSuccessModal() {
+        document.getElementById("successModal").classList.remove("show");
+        navTo("history");
+
+        document.getElementById("historyContent").innerHTML = `
+        <div style="background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: 20px; padding: 24px; text-align:left; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px;">
+            <div>
+              <p style="color: var(--text-muted); font-size:0.8rem; margin-bottom:4px;">Status</p>
+              <span style="background: rgba(0,240,255,0.1); color: var(--primary); padding: 4px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 800;">BERHASIL</span>
+            </div>
+            <i class="fas fa-check-circle" style="color: var(--primary); font-size: 2.2rem; filter: drop-shadow(0 0 10px rgba(0,240,255,0.5));"></i>
+          </div>
+          <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 6px;">${state.item.name}</h4>
+          <p style="color: var(--primary); font-size: 1.2rem; font-weight: 800; margin-bottom: 16px;">${state.item.price}</p>
+          <p style="color: var(--text-muted); font-size: 0.85rem; display:flex; justify-content:space-between;"><span>ID Target:</span> <strong style="color:#fff;">${document.getElementById("playerId").value}</strong></p>
+        </div>
+      `;
+      }
+    </script>
+  </body>
+</html>
