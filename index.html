@@ -15,36 +15,39 @@
   </head>
   <body>
     <div class="app-wrapper">
+      <div class="ambient-glow"></div>
+
       <div class="content-wrapper">
         <!-- HEADER -->
         <header id="appHeader">
-          <div class="user-info">
-            <div class="avatar" id="headerAvatar">
-              <i class="fas fa-user-secret"></i>
-            </div>
-            <div class="user-text">
-              <h2 id="headerName">Guest Account</h2>
-              <p id="headerStatus" style="color: var(--text-muted)">
-                Unverified
-              </p>
+          <div class="header-brand">
+            <div class="header-logo">DGS</div>
+            <div class="header-text">
+              <span>D.Gamers</span>
+              <span>Store</span>
             </div>
           </div>
-          <div class="wallet-badge" id="headerWallet">
-            <i class="fas fa-wallet"></i> Rp 0
+          <!-- Ikon Profil yang interaktif langsung menuju form Akun -->
+          <div
+            class="header-avatar"
+            id="headerAvatarIcon"
+            onclick="navTo('account')"
+          >
+            <i class="fas fa-user"></i>
           </div>
         </header>
 
         <!-- 1. DASHBOARD (HOME) -->
         <div id="homeSection" class="section active">
-          <div class="brand-welcome">
-            <div class="brand-identity">
-              <div class="brand-logo" aria-hidden="true">DG</div>
-              <div class="logo-text">
-                <i class="fas fa-bolt"></i>
-                <span>D.Gamers Store</span>
-              </div>
+          <!-- PROMO BANNER -->
+          <div class="promo-banner">
+            <div class="promo-text">
+              <h3>Diskon <span>Spesial</span><br />Member Baru</h3>
+              <p>Top up sekarang dan raih untungnya.</p>
+              <button class="btn-sm" onclick="navTo('account')">
+                Klaim Promo
+              </button>
             </div>
-            <p>Top UP Murah, Aman, dan Terpecaya!!!</p>
           </div>
 
           <div class="section-header">
@@ -52,6 +55,7 @@
             <h3>Game Terfavorit</h3>
           </div>
 
+          <!-- DAFTAR GAME -->
           <div class="game-grid">
             <div
               class="game-card"
@@ -62,12 +66,11 @@
                 )
               "
             >
-              <div class="rgb-img-box" data-game="pubg">
-                <div class="rgb-inner">
+              <div class="img-box">
+                <div class="img-inner">
                   <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/PUBG_Mobile_logo.png/320px-PUBG_Mobile_logo.png"
                     alt="PUBG Mobile"
-                    loading="lazy"
                   />
                 </div>
               </div>
@@ -83,12 +86,11 @@
                 )
               "
             >
-              <div class="rgb-img-box" data-game="ml">
-                <div class="rgb-inner">
+              <div class="img-box">
+                <div class="img-inner">
                   <img
                     src="https://upload.wikimedia.org/wikipedia/en/thumb/1/13/MobileLegends_Logo.png/320px-MobileLegends_Logo.png"
                     alt="Mobile Legends"
-                    loading="lazy"
                   />
                 </div>
               </div>
@@ -104,12 +106,11 @@
                 )
               "
             >
-              <div class="rgb-img-box" data-game="ff">
-                <div class="rgb-inner">
+              <div class="img-box">
+                <div class="img-inner">
                   <img
                     src="https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Garena_Free_Fire_Logo.png/320px-Garena_Free_Fire_Logo.png"
                     alt="Free Fire"
-                    loading="lazy"
                   />
                 </div>
               </div>
@@ -125,13 +126,13 @@
                 )
               "
             >
-              <div class="rgb-img-box" data-game="rbx">
-                <div class="rgb-inner">
+              <div class="img-box">
+                <div class="img-inner">
+                  <!-- Invert filter agar teks Roblox putih terlihat -->
                   <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Roblox_Logo_2022.svg/320px-Roblox_Logo_2022.svg.png"
-                    style="filter: brightness(0)"
+                    style="filter: brightness(0) invert(1)"
                     alt="Roblox"
-                    loading="lazy"
                   />
                 </div>
               </div>
@@ -142,12 +143,20 @@
 
         <!-- 2. RIWAYAT -->
         <div id="historySection" class="section">
-          <div class="brand-welcome" style="margin-bottom: 20px">
-            <h3 style="color: #fff; font-size: 1.4rem; font-weight: 800">
-              Riwayat Transaksi
-            </h3>
-          </div>
-          <div class="brand-welcome empty-state" id="historyContent">
+          <h3 style="margin-bottom: 20px; font-weight: 800; color: #fff">
+            Riwayat Pesanan
+          </h3>
+          <div
+            id="historyContent"
+            style="
+              text-align: center;
+              padding: 60px 0;
+              background: var(--bg-surface);
+              border-radius: var(--radius-lg);
+              border: 1px solid var(--border-color);
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            "
+          >
             <i
               class="fas fa-file-invoice"
               style="
@@ -156,14 +165,22 @@
                 margin-bottom: 16px;
               "
             ></i>
-            <h3 style="color: #fff">Belum Ada Transaksi</h3>
-            <p style="margin-top: 8px">Top up pertamamu akan muncul di sini.</p>
+            <h4 style="color: #fff; font-size: 1.2rem">Belum Ada Transaksi</h4>
+            <p
+              style="
+                color: var(--text-muted);
+                font-size: 0.9rem;
+                margin-top: 8px;
+              "
+            >
+              Pesanan top up pertamamu akan muncul di sini.
+            </p>
           </div>
         </div>
 
-        <!-- 3. AKUN (Login & Daftar) -->
+        <!-- 3. AKUN (PROFILE) -->
         <div id="accountSection" class="section">
-          <!-- Jika Belum Login -->
+          <!-- Jika Belum Login (Form Login & Daftar) -->
           <div id="authContainer" class="auth-box">
             <div class="auth-tabs" id="authTabsContainer" data-active="login">
               <div class="auth-indicator"></div>
@@ -172,14 +189,14 @@
                 id="tabLogin"
                 onclick="switchAuth('login')"
               >
-                LOGIN
+                Login
               </div>
               <div
                 class="auth-tab"
                 id="tabRegister"
                 onclick="switchAuth('register')"
               >
-                DAFTAR
+                Daftar
               </div>
             </div>
 
@@ -188,10 +205,12 @@
               <div class="form-group">
                 <div class="input-modern">
                   <i class="fas fa-phone"></i>
+                  <!-- Default value added based on request to simulate existing user account -->
                   <input
                     type="number"
                     id="loginPhone"
-                    placeholder="Nomor Handphone"
+                    placeholder="Nomor Handphone/ID"
+                    value="1462400131"
                   />
                 </div>
               </div>
@@ -205,9 +224,7 @@
                   />
                 </div>
               </div>
-              <button class="btn-main" onclick="doLogin()">
-                Masuk Akun <i class="fas fa-arrow-right"></i>
-              </button>
+              <button class="btn-main" onclick="doLogin()">Masuk Akun</button>
             </div>
 
             <!-- FORM DAFTAR -->
@@ -239,31 +256,53 @@
                 </div>
               </div>
               <button class="btn-main" onclick="doRegister()">
-                Daftar Sekarang <i class="fas fa-user-plus"></i>
+                Daftar Sekarang
               </button>
             </div>
           </div>
 
-          <!-- Jika Sudah Login -->
-          <div id="profileContainer" class="profile-card" style="display: none">
-            <div class="avatar-lg" id="profileAvatar">D</div>
-            <h2 id="profileName">Gamer</h2>
-            <p id="profilePhone">08123456789</p>
-            <button class="btn-danger" onclick="doLogout()">
-              <i class="fas fa-power-off"></i> KELUAR AKUN
-            </button>
+          <!-- Jika Sudah Login (Tampilan Profile) -->
+          <div id="profileContainer" style="display: none">
+            <div class="profile-card">
+              <div class="ava" id="profileInitials">D</div>
+              <div class="info">
+                <h3 id="profileName">Deni</h3>
+                <p id="profileMembership">VIP Member</p>
+                <p
+                  style="
+                    margin-top: 6px;
+                    color: var(--primary);
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                    font-size: 1rem;
+                    font-weight: 800;
+                  "
+                  id="profilePhone"
+                >
+                  1462400131
+                </p>
+              </div>
+              <button class="edit-btn" onclick="doLogout()">
+                <i class="fas fa-power-off"></i>
+              </button>
+            </div>
+
+            <div class="saldo-card">
+              <p>Saldo Aktif</p>
+              <h2 id="saldoDisplay">Rp 250.000</h2>
+              <button>Isi Saldo DG</button>
+            </div>
           </div>
         </div>
 
-        <!-- TRANSAKSI (Hanya bisa diakses jika Login) -->
+        <!-- TRANSAKSI (Hanya bisa diakses jika sudah Login) -->
         <div id="transactionSection" class="section">
           <div class="nav-back" onclick="navTo('home')">
-            <i class="fas fa-chevron-left"></i> Kembali ke Menu
+            <i class="fas fa-arrow-left"></i> Kembali ke Menu
           </div>
 
           <div class="tx-header">
-            <div class="rgb-img-box">
-              <div class="rgb-inner">
+            <div class="img-box" style="margin: 0; width: 65px; height: 65px">
+              <div class="img-inner">
                 <img id="gameBannerImg" src="" alt="Game" />
               </div>
             </div>
@@ -273,7 +312,7 @@
           <div class="tx-panel active-panel">
             <div class="panel-head">
               <div class="step-num">1</div>
-              ID Target
+              ID Game Tujuan
             </div>
             <div class="input-modern">
               <i class="fas fa-gamepad"></i>
@@ -281,7 +320,7 @@
                 type="text"
                 id="playerId"
                 class="font-mono"
-                placeholder="Ketik ID Game Anda"
+                placeholder="Ketik ID (Contoh: 1462400131)"
                 oninput="handleSteps()"
               />
             </div>
@@ -290,7 +329,7 @@
           <div class="tx-panel locked" id="itemPanel">
             <div class="panel-head">
               <div class="step-num">2</div>
-              Pilih Item
+              Pilih Nominal
             </div>
             <div class="nominal-grid" id="itemGrid"></div>
           </div>
@@ -303,10 +342,10 @@
             <div class="pay-method" onclick="selectPayment(this, 'QRIS')">
               <i
                 class="fas fa-qrcode"
-                style="font-size: 28px; color: var(--primary)"
+                style="font-size: 30px; color: var(--primary)"
               ></i>
-              <div style="flex: 1; margin-left: 16px">
-                <h5 style="color: #fff; font-size: 1.05rem">QRIS Premium</h5>
+              <div style="flex: 1; margin-left: 14px">
+                <h5 style="color: #fff; font-size: 1.1rem">QRIS Auto</h5>
                 <p
                   style="
                     font-size: 0.8rem;
@@ -319,22 +358,22 @@
               </div>
               <i
                 class="fas fa-check-circle check-icon"
-                style="color: var(--primary); display: none; font-size: 1.4rem"
+                style="color: var(--primary); display: none; font-size: 1.5rem"
               ></i>
             </div>
           </div>
 
           <button class="btn-main locked" id="buyBtn" onclick="processOrder()">
-            Beli Sekarang
+            Lanjutkan Pembayaran
           </button>
         </div>
       </div>
 
-      <!-- FLOATING DOCK NAVIGATION DENGAN TEKS SELALU TAMPIL -->
+      <!-- BOTTOM NAVIGATION -->
       <div class="bottom-nav-container">
         <div class="bottom-nav">
           <div class="nav-item active" id="nav-home" onclick="navTo('home')">
-            <i class="fas fa-cube"></i><span>HOME</span>
+            <i class="fas fa-home"></i><span>HOME</span>
           </div>
           <div class="nav-item" id="nav-history" onclick="navTo('history')">
             <i class="fas fa-receipt"></i><span>RIWAYAT</span>
@@ -353,13 +392,19 @@
         <div class="modal-box">
           <i
             class="fas fa-shield-alt"
-            style="font-size: 4rem; color: var(--primary); margin-bottom: 20px"
+            style="
+              font-size: 4.5rem;
+              color: var(--primary);
+              margin-bottom: 24px;
+              filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.4));
+              animation: movingShadowGlow 3s infinite;
+            "
           ></i>
           <h3
             style="
-              font-size: 1.6rem;
+              font-size: 1.5rem;
               font-weight: 800;
-              margin-bottom: 10px;
+              margin-bottom: 12px;
               color: #fff;
             "
           >
@@ -369,14 +414,15 @@
             style="
               color: var(--text-muted);
               font-size: 0.95rem;
-              margin-bottom: 30px;
-              line-height: 1.5;
+              margin-bottom: 28px;
+              line-height: 1.6;
             "
           >
-            Keamanan adalah prioritas kami!
+            Demi keamanan bertransaksi, silakan masuk ke akun Anda terlebih
+            dahulu.
           </p>
           <button class="btn-main" onclick="closeLoginPrompt()">
-            Buka Menu Akun
+            Menuju Halaman Login
           </button>
         </div>
       </div>
@@ -388,34 +434,34 @@
             class="fas fa-check-circle"
             style="
               font-size: 5rem;
-              color: #00f0ff;
+              color: #d4ff00;
               margin-bottom: 24px;
-              filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.5));
+              filter: drop-shadow(0 0 20px rgba(212, 255, 0, 0.5));
+              animation: movingShadowGlow 3s infinite;
             "
           ></i>
           <h3
             style="
-              font-size: 1.8rem;
+              font-size: 1.6rem;
               font-weight: 800;
               margin-bottom: 12px;
               color: #fff;
             "
           >
-            Berhasil!
+            Pembayaran Sukses!
           </h3>
           <p
             style="
               color: var(--text-muted);
               font-size: 0.95rem;
               margin-bottom: 30px;
-              line-height: 1.5;
+              line-height: 1.6;
             "
           >
-            Transaksi sedang diproses secara real-time. Cek halaman riwayat
-            untuk status.
+            Pesanan sedang diproses secara otomatis oleh sistem kami.
           </p>
           <button class="btn-main" onclick="closeSuccessModal()">
-            Selesai
+            Tutup & Lihat Resi
           </button>
         </div>
       </div>
@@ -462,8 +508,6 @@
           .querySelectorAll(".nav-item")
           .forEach((n) => n.classList.remove("active"));
 
-        document.getElementById("appHeader").style.display = "flex";
-
         if (tab === "home") {
           document.getElementById("homeSection").classList.add("active");
           document.getElementById("nav-home").classList.add("active");
@@ -509,8 +553,8 @@
         const pass = document.getElementById("loginPass").value.trim();
         if (!phone || !pass) return showToast("⚠️ Masukkan No HP & Password!");
 
-        setUserLoggedIn("Gamer VIP", phone);
-        showToast("✨ Login Berhasil!");
+        setUserLoggedIn("Deni", phone);
+        showToast("✨ Welcome back, Deni!");
         navTo("home");
       }
 
@@ -519,7 +563,7 @@
         const phone = document.getElementById("regPhone").value.trim();
         const pass = document.getElementById("regPass").value.trim();
         if (!name || !phone || !pass)
-          return showToast("⚠️ Lengkapi semua data pendaftaran!");
+          return showToast("⚠️ Lengkapi semua data!");
 
         setUserLoggedIn(name, phone);
         showToast("✨ Pendaftaran Berhasil!");
@@ -531,22 +575,16 @@
         state.name = name;
         state.phone = phone;
 
-        document.getElementById("headerName").innerText = name;
-        document.getElementById("headerStatus").innerText = "VIP Verified";
-        document.getElementById("headerStatus").style.color = "var(--primary)";
-        document.getElementById("headerAvatar").innerHTML = name
-          .charAt(0)
-          .toUpperCase();
-        document.getElementById("headerAvatar").classList.add("logged-in");
-        document.getElementById("headerWallet").classList.add("active");
-        document.getElementById("headerWallet").innerHTML =
-          `<i class="fas fa-wallet"></i> Rp 150.000`;
+        document.getElementById("headerAvatarIcon").style.background =
+          "var(--text-main)";
+        document.getElementById("headerAvatarIcon").style.color = "#000";
+        document.getElementById("headerAvatarIcon").style.border = "none";
 
         document.getElementById("authContainer").style.display = "none";
         document.getElementById("profileContainer").style.display = "block";
         document.getElementById("profileName").innerText = name;
         document.getElementById("profilePhone").innerText = phone;
-        document.getElementById("profileAvatar").innerText = name
+        document.getElementById("profileInitials").innerText = name
           .charAt(0)
           .toUpperCase();
       }
@@ -556,16 +594,12 @@
         state.name = "";
         state.phone = "";
 
-        document.getElementById("headerName").innerText = "Guest Account";
-        document.getElementById("headerStatus").innerText = "Unverified";
-        document.getElementById("headerStatus").style.color =
-          "var(--text-muted)";
-        document.getElementById("headerAvatar").innerHTML =
-          `<i class="fas fa-user-secret"></i>`;
-        document.getElementById("headerAvatar").classList.remove("logged-in");
-        document.getElementById("headerWallet").classList.remove("active");
-        document.getElementById("headerWallet").innerHTML =
-          `<i class="fas fa-wallet"></i> Rp 0`;
+        document.getElementById("headerAvatarIcon").style.background =
+          "var(--bg-surface)";
+        document.getElementById("headerAvatarIcon").style.color =
+          "var(--primary)";
+        document.getElementById("headerAvatarIcon").style.border =
+          "1px solid var(--primary)";
 
         document.getElementById("authContainer").style.display = "block";
         document.getElementById("profileContainer").style.display = "none";
@@ -573,9 +607,10 @@
         document
           .querySelectorAll("input")
           .forEach((input) => (input.value = ""));
+        document.getElementById("loginPhone").value = "1462400131";
         switchAuth("login");
 
-        showToast("Anda telah keluar.");
+        showToast("Anda telah logout.");
         navTo("home");
       }
 
@@ -587,7 +622,6 @@
 
         state.item = null;
         state.pay = "";
-        document.getElementById("appHeader").style.display = "none";
         document
           .querySelectorAll(".section")
           .forEach((s) => s.classList.remove("active"));
@@ -595,18 +629,19 @@
         document
           .querySelectorAll(".nav-item")
           .forEach((n) => n.classList.remove("active"));
-        document.getElementById("nav-home").classList.add("active");
 
         document.getElementById("gameTitle").innerText = name;
         document.getElementById("gameBannerImg").src = logo;
         if (name === "Roblox") {
           document.getElementById("gameBannerImg").style.filter =
-            "brightness(0)";
+            "brightness(0) invert(1)";
         } else {
           document.getElementById("gameBannerImg").style.filter = "none";
         }
 
-        document.getElementById("playerId").value = "";
+        // Auto-fill Target ID with user's ID
+        document.getElementById("playerId").value = state.phone;
+
         document.getElementById("itemPanel").classList.add("locked");
         document.getElementById("paymentPanel").classList.add("locked");
         document.getElementById("buyBtn").classList.add("locked");
@@ -632,6 +667,7 @@
           };
           grid.appendChild(div);
         });
+        handleSteps(); // Re-check unlock logic
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
@@ -673,7 +709,7 @@
         setTimeout(() => {
           document.getElementById("successModal").classList.add("show");
           btn.innerText = `Beli Sekarang`;
-        }, 2000);
+        }, 1500);
       }
 
       function closeSuccessModal() {
@@ -681,17 +717,20 @@
         navTo("history");
 
         document.getElementById("historyContent").innerHTML = `
-        <div style="background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: 20px; padding: 24px; text-align:left; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 20px; padding: 24px; text-align:left; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px;">
             <div>
-              <p style="color: var(--text-muted); font-size:0.8rem; margin-bottom:4px;">Status</p>
-              <span style="background: rgba(0,240,255,0.1); color: var(--primary); padding: 4px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 800;">BERHASIL</span>
+              <p style="color: var(--text-muted); font-size:0.85rem; margin-bottom:4px;">Status Pesanan</p>
+              <span style="color: #d4ff00; font-size: 0.9rem; font-weight: 800; letter-spacing: 1px; animation: movingShadowGlow 2s infinite alternate;">BERHASIL</span>
             </div>
-            <i class="fas fa-check-circle" style="color: var(--primary); font-size: 2.2rem; filter: drop-shadow(0 0 10px rgba(0,240,255,0.5));"></i>
+            <i class="fas fa-check-circle" style="color: #d4ff00; font-size: 2.5rem; filter: drop-shadow(0 0 10px rgba(212, 255, 0, 0.4));"></i>
           </div>
           <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 6px;">${state.item.name}</h4>
-          <p style="color: var(--primary); font-size: 1.2rem; font-weight: 800; margin-bottom: 16px;">${state.item.price}</p>
-          <p style="color: var(--text-muted); font-size: 0.85rem; display:flex; justify-content:space-between;"><span>ID Target:</span> <strong style="color:#fff;">${document.getElementById("playerId").value}</strong></p>
+          <p style="color: var(--primary); font-size: 1.3rem; font-weight: 800; margin-bottom: 16px; animation: rgbShift 10s infinite;">${state.item.price}</p>
+          <p style="color: var(--text-muted); font-size: 0.9rem; display:flex; justify-content:space-between; align-items:center;">
+            <span>ID Tujuan:</span> 
+            <strong style="color:#fff; font-family: monospace; font-size: 1rem;">${document.getElementById("playerId").value}</strong>
+          </p>
         </div>
       `;
       }
